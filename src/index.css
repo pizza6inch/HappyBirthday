@@ -6,3 +6,8 @@
   font-family: "KTEGAKI";
   src: url("../public/fonts/KTEGAKI.ttf");
 }
+
+@font-face {
+  font-family: "Oldenburg";
+  src: url("../public/fonts/Oldenburg-Regular.ttf");
+}

@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         jpFont: ["KTEGAKI", "sans-serif"],
+        enFont: ["Oldenburg", "sans-serif"],
       },
     },
   },
