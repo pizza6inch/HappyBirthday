@@ -21,7 +21,7 @@ const Hero = () => {
         <h1 className="">老姊</h1>
         <p className="">生日快樂啦！</p>
         <p className=" font-jpFont text-4xl">
-          もっと素敵になりますように。お誕生日おめでとう！
+          風のように自由で、花のように美しい日々を過ごせますように。
         </p>
         <h2> from 匯吾</h2>
       </div>
