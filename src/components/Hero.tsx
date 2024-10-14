@@ -44,7 +44,7 @@ const LetterWithAnimate: React.FC = () => (
 const Hero = () => {
   const deviceType = useDeviceType();
   return (
-    <div className="bg-gradient-to-br from-[#F7E4DF] to-[#F0C2B2] w-[full] h-[100vh] flex flex-col justify-between relative ">
+    <div className=" w-[full] h-[100vh] flex flex-col justify-between relative ">
       <motion.div
         initial={{ y: 100, opacity: 0 }} // 初始状态
         whileInView={{ y: 0, opacity: 1 }} // 在视口内时的状态
@@ -83,7 +83,7 @@ const Hero = () => {
           viewport={{ once: true }} // 只在第一次进入视口时触发
           transition={{ duration: 0.5, delay: 8 }}
         >
-          from 匯吾
+          from 老吾
         </motion.h2>
       </div>
       <motion.img
