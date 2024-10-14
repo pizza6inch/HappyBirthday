@@ -11,3 +11,17 @@
   font-family: "Oldenburg";
   src: url("../public/fonts/Oldenburg-Regular.ttf");
 }
+
+@keyframes bounce-horizontal {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px); /* 可以调整这个值来控制跳动的距离 */
+  }
+}
+
+.animate-bounce-horizontal {
+  animation: bounce-horizontal 1s infinite; /* 这里可以调整动画的持续时间和循环次数 */
+}
