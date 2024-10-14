@@ -3,7 +3,7 @@ import useDeviceType from "../hooks/useDeviceType";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 // import { Autoplay } from "swiper";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 
 import "swiper/swiper-bundle.css"; // 适用于 Swiper v9 和更高版本
 import { Tilt } from "react-tilt";
@@ -70,7 +70,7 @@ const Gallery = () => {
             </svg>
           </div>
           <Swiper
-            modules={[Pagination, Scrollbar, A11y]}
+            modules={[Pagination]}
             pagination={true}
             autoplay={{ delay: 3000 }}
             className="my-16 w-full rounded-lg relative"
