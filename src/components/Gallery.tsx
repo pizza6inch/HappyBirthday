@@ -23,17 +23,25 @@ const Photo = ({
   delay = 0,
   handleHovered,
   handleUnhovered,
+  device,
 }: {
   src: string;
   delay?: number;
   handleHovered: () => void;
   handleUnhovered: () => void;
+  device: "mobile" | "desktop";
 }) => {
   return (
     <Tilt>
       <motion.img
         initial={{ opacity: 0, x: -200, y: 100, rotate: -10 }}
-        whileInView={{ opacity: 0.5, x: 0, y: 0, rotate: -10, transition: { duration: 1, delay: delay } }}
+        whileInView={{
+          opacity: device === "desktop" ? 0.5 : 1,
+          x: 0,
+          y: 0,
+          rotate: -10,
+          transition: { duration: 1, delay: delay },
+        }}
         whileHover={{
           scale: 1.2,
           rotate: 0,
@@ -44,16 +52,16 @@ const Photo = ({
         onHoverStart={handleHovered}
         onHoverEnd={handleUnhovered}
         src={src}
-        className=" w-[500px] rounded-lg"
+        className=" w-full lg:w-[500px] rounded-lg "
       />
     </Tilt>
   );
 };
 
 const Gallery = () => {
-  const device = useDeviceType();
   const [showRoast, setShowRoast] = useState(false);
 
+  const device = useDeviceType();
   const handleHovered = () => {
     setShowRoast(true);
   };
@@ -80,53 +88,28 @@ const Gallery = () => {
       >
         Memories
       </motion.h2>
+
+      <div className=" grid grid-cols-1 lg:grid-cols-2 my-16 gap-40 ">
+        {photos.map((photo, index) => (
+          <Photo
+            key={index}
+            src={photo}
+            delay={index % 2 === 0 ? 0.5 : 0}
+            handleHovered={handleHovered}
+            handleUnhovered={handleUnhovered}
+            device={device}
+          />
+        ))}
+      </div>
       {device === "desktop" && (
-        <>
-          <div className=" grid grid-cols-2 my-16 gap-40 ">
-            {photos.map((photo, index) => (
-              <Photo
-                key={index}
-                src={photo}
-                delay={index % 2 === 0 ? 0.5 : 0}
-                handleHovered={handleHovered}
-                handleUnhovered={handleUnhovered}
-              />
-            ))}
-          </div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: showRoast ? 1 : 0 }}
-            transition={{ duration: 0.5 }} // For smoother animation
-            className="absolute bottom-[400px] right-[500px] text-2xl text-[#103362] font-enFont font-bold"
-          >
-            {"頭髮也想當主角 X)"}
-          </motion.div>
-        </>
-      )}
-      {device === "mobile" && (
-        <div className=" relative w-full">
-          <div className="absolute top-8 left-1/2 transform -translate-x-1/2 animate-bounce-horizontal">
-            <svg className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 15h20m0 0l-5-5m5 5l-5 5" />
-            </svg>
-          </div>
-          <Swiper
-            modules={[Pagination]}
-            pagination={true}
-            autoplay={{ delay: 3000 }}
-            className="my-16 w-full rounded-lg relative"
-            spaceBetween={0}
-            slidesPerView={1}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log("slide change")}
-          >
-            {photos.map((photo, index) => (
-              <SwiperSlide key={index}>
-                <img src={photo} alt={`photo${index}`} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: showRoast ? 1 : 0 }}
+          transition={{ duration: 0.5 }} // For smoother animation
+          className="absolute bottom-[400px] right-[500px] text-2xl text-[#103362] font-enFont font-bold"
+        >
+          {"頭髮也想當主角 X)"}
+        </motion.div>
       )}
     </section>
   );

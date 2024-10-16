@@ -21,7 +21,7 @@ type HatType = {
 const Hat = ({ hat }: { hat: HatType }) => {
   return (
     hat?.src && (
-      <div className=" absolute top-0 -translate-x-1/2 left-[50%] transform w-1/5">
+      <div className=" absolute top-0 -translate-x-1/2 left-[50%] transform lg:w-1/5">
         <motion.img
           key={hat.src}
           initial={{ opacity: 0, y: -100 + hat.offset.y, x: hat.offset.x, rotate: hat.rotate }}
@@ -66,13 +66,13 @@ const Main = () => {
         Pick A Hat!
       </motion.h2>
       {/* <Hat src={hat1} /> */}
-      <div className="flex justify-center items-center">
-        <div className="relative w-[70%]">
+      <div className="flex items-center gap-5">
+        <div className="relative w-2/3 lg:w-[70%]">
           <Hat hat={hat} />
-          <motion.img src={main} className=" w-1/4 mx-auto mt-[145px] rounded-xl" />
-          <Fireworks />;
+          <motion.img src={main} className=" lg:w-1/4 mx-auto mt-[80px] lg:mt-[145px] rounded-xl" />
+          <Fireworks />
         </div>
-        <div className="w-[450px] grid grid-cols-3 ">
+        <div className="w-1/3 lg:w-[450px] grid grid-cols-1 lg:grid-cols-3 relative lg:right-[200px]">
           {HATS.map((hat, index) => (
             <motion.img
               initial={{ scale: 0.75 }}

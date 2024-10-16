@@ -69,50 +69,50 @@ const CapooArea = () => {
   }, [cuteness]);
 
   return (
-    <div className="w-full h-[600px] py-6">
+    <div className="w-full h-min lg:h-[600px] py-6">
       <motion.h2
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="text-[#103362] font-bold text-[40px] text-center font-enFont"
+        className="text-[#103362] h-[100px] font-bold text-[40px] text-center font-enFont"
       >
         咖咖咖波🥳
       </motion.h2>
-      <div className=" flex w-full h-full">
-        <div className=" lg:w-1/2 w-full hover:cursor-grab active:cursor-grabbing relative">
+      <div className=" flex w-full h-[400px]  flex-col lg:flex-row">
+        <div className="w-full lg:w-1/2 hover:cursor-grab active:cursor-grabbing relative">
           <Dialog isOpen={isOpen} />
           <CapooCanvas speed={speed} />
         </div>
-        {deviceType === "desktop" && (
-          <div className="w-1/2 flex flex-col items-center gap-4">
+        <div className="w-full lg:w-1/2 flex flex-col items-center gap-4">
+          {deviceType === "desktop" && (
             <motion.div
               initial={{ opacity: 0, scale: 2, rotate: 360, x: -50 }}
               whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
               transition={{ duration: 1 }}
-              className="font-enFont font-semibold text-[#103362] mt-6 text-[40px]"
+              className="font-enFont font-semibold text-[#103362] mt-6 text-[40px] text-center "
             >
               咖波的可愛指數:
             </motion.div>
-            <span>
-              <motion.span
-                key={cuteness} // 為每個變動數字設置唯一的 key 來觸發動畫
-                initial={{ scale: 1, color: "#0000ff" }} // 初始狀態
-                animate={{ scale: [1, 1 + cuteness / 100, 1], color: ["#0000ff", "#ff0000", "#0000ff"] }} // 動畫狀態
-                transition={{ duration: 0.5, ease: "easeInOut" }} //
-                className=" inline-block font-bold"
-              >
-                {cuteness}
-              </motion.span>
-              {"  "}/ 100
-            </span>
-            <button
-              onClick={handleClicked}
-              className=" active:shadow-none active:translate-y-1 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+          )}
+          <span>
+            <motion.span
+              key={cuteness} // 為每個變動數字設置唯一的 key 來觸發動畫
+              initial={{ scale: 1, color: "#0000ff" }} // 初始狀態
+              animate={{ scale: [1, 1 + cuteness / 100, 1], color: ["#0000ff", "#ff0000", "#0000ff"] }} // 動畫狀態
+              transition={{ duration: 0.5, ease: "easeInOut" }} //
+              className=" inline-block font-bold"
             >
-              ❤️
-            </button>
-          </div>
-        )}
+              {cuteness}
+            </motion.span>
+            {"  "}/ 100
+          </span>
+          <button
+            onClick={handleClicked}
+            className=" active:shadow-none active:translate-y-1 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+          >
+            ❤️
+          </button>
+        </div>
       </div>
     </div>
   );
