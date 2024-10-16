@@ -8,15 +8,36 @@ import { motion } from "framer-motion";
 import useDeviceType from "../hooks/useDeviceType";
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 
+type content = { text: string; color: string }[];
+
 const Congratulations = [
   { text: "風のように自由で、", color: "text-green-400" },
   { text: "花のように美しい", color: "text-red-400" },
   { text: "日々を過ごせますように！", color: "black" },
 ];
 
-const LetterWithAnimate: React.FC = () => (
-  <>
-    {Congratulations.map(({ text, color }, lineIndex) => (
+// 「これからも、」
+
+// 顏色: 柔和的淡藍色或綠色
+// 解釋: 這段話強調未來，給人希望和鼓勵，淡藍色或綠色能帶來平靜且充滿希望的感覺。
+// 「毎日を大切に、」
+
+// 顏色: 溫暖的橙色或黃色
+// 解釋: 表達珍惜每一天的溫暖和積極感，橙色或黃色象徵著活力與積極的態度，適合傳達這種情感。
+// 「あなたらしく過ごしてくださいね。」
+
+// 顏色: 柔和的紫色或粉紅色
+// 解釋: 這部分帶有祝福與關懷，柔和的紫色或粉紅色可以表達溫柔、個性化和親切的感覺，適合鼓勵對方以自己的方式過生活。
+
+const Congratulations2 = [
+  { text: "これからも、", color: "text-blue-400" },
+  { text: "毎日を大切に、", color: "text-yellow-400" },
+  { text: "あなたらしく過ごしてくださいね！", color: "black" },
+];
+
+const LetterWithAnimate = ({ content }: { content: content }) => (
+  <div className="mt-6">
+    {content.map(({ text, color }, lineIndex) => (
       <motion.span
         key={lineIndex}
         initial={{ opacity: 0, y: 20 }}
@@ -39,7 +60,7 @@ const LetterWithAnimate: React.FC = () => (
         ))}
       </motion.span>
     ))}
-  </>
+  </div>
 );
 
 const Hero = () => {
@@ -85,12 +106,13 @@ const Hero = () => {
           ))}
         </p>
         <p className=" font-jpFont text-xl lg:text-4xl mt-4 mx-4">
-          <LetterWithAnimate />
+          <LetterWithAnimate content={Congratulations} />
+          <LetterWithAnimate content={Congratulations2} />
         </p>
         <motion.h2
           className="text-gray-800 font-semibold text-[28px] mt-10"
-          initial={{ rotate: 270, opacity: 0 }} // 初始状态
-          whileInView={{ rotate: 0, opacity: 1 }} // 在视口内时的状态
+          initial={{ rotate: 270, opacity: 0, x: 300 }} // 初始状态
+          whileInView={{ rotate: 0, opacity: 1, x: 300 }} // 在视口内时的状态
           viewport={{ once: true }} // 只在第一次进入视口时触发
           transition={{ duration: 0.5, delay: 8 }}
         >
