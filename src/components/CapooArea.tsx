@@ -6,15 +6,7 @@ import { motion } from "framer-motion";
 
 const Dialog = ({ isOpen = false }: { isOpen: boolean }) => {
   return (
-    <div
-      style={{
-        textAlign: "center",
-        position: "absolute",
-        top: "-5%",
-        left: "50%",
-        transform: " translateX(-50%)",
-      }}
-    >
+    <div className=" text-center absolute top-[-60%] lg:top-[-20%] left-1/2 transform -translate-x-1/2">
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, y: -50 }} // 對話框從上方淡入
@@ -33,7 +25,7 @@ const Dialog = ({ isOpen = false }: { isOpen: boolean }) => {
             textAlign: "left",
           }}
         >
-          <p style={{ margin: "0 0 10px 0" }}>太快啦!😵‍💫</p>
+          <p style={{ margin: "0 0 10px 0" }}> 生日快樂捏✨✨ </p>
           {/* 左下角的三角形 */}
           <div
             style={{
@@ -57,15 +49,19 @@ const CapooArea = () => {
   const [cuteness, setCuteness] = useState(0);
   const [speed, setSpeed] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
+  const [isMagic, setIsMagic] = useState(false);
   const deviceType = useDeviceType();
 
   const handleClicked = () => {
-    setSpeed((prev) => prev + 1);
-    setCuteness((prev) => prev + 1);
+    setSpeed((prev) => prev + 5);
+    setCuteness((prev) => prev + 5);
   };
 
   useEffect(() => {
-    if (cuteness >= 100) setIsOpen(true);
+    if (cuteness >= 100) {
+      setIsMagic(true);
+      setIsOpen(true);
+    }
   }, [cuteness]);
 
   return (
@@ -81,7 +77,7 @@ const CapooArea = () => {
       <div className=" flex w-full h-[400px]  flex-col lg:flex-row">
         <div className="w-full lg:w-1/2 hover:cursor-grab active:cursor-grabbing relative">
           <Dialog isOpen={isOpen} />
-          <CapooCanvas speed={speed} />
+          <CapooCanvas speed={speed} isMagic={isMagic} />
         </div>
         <div className="w-full lg:w-1/2 flex flex-col items-center gap-4">
           {deviceType === "desktop" && (
@@ -91,7 +87,7 @@ const CapooArea = () => {
               transition={{ duration: 1 }}
               className="font-enFont font-semibold text-[#103362] mt-6 text-[40px] text-center "
             >
-              咖波的可愛指數:
+              給咖波注入魔法吧！
             </motion.div>
           )}
           <span>

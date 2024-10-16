@@ -146,10 +146,10 @@ const Hero = () => {
             </motion.span>
           ))}
         </p>
-        <p className=" font-jpFont text-xl lg:text-4xl mt-4 mx-4">
+        <div className=" font-jpFont text-2xl lg:text-4xl mt-4 mx-4">
           <LetterWithAnimate content={Congratulations} />
           <LetterWithAnimate content={Congratulations2} />
-        </p>
+        </div>
         <motion.h2
           className="text-gray-800 font-semibold text-[28px] mt-10 lg:left-[300px] relative"
           initial={{ rotate: 270, opacity: 0 }} // 初始状态
