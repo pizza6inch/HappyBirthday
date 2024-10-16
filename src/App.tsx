@@ -3,7 +3,6 @@ import Gallery from "./components/Gallery";
 import Main from "./components/Main";
 import CapooArea from "./components/CapooArea";
 import { useState, useEffect } from "react";
-import { use } from "framer-motion/client";
 function App() {
   const [showOther, setShowOther] = useState(false);
 
