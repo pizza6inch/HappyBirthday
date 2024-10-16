@@ -6,6 +6,7 @@ import cake from "../assets/cake.svg";
 import { motion } from "framer-motion";
 
 import useDeviceType from "../hooks/useDeviceType";
+import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 
 const Congratulations = [
   { text: "風のように自由で、", color: "text-green-400" },
@@ -45,6 +46,7 @@ const Hero = () => {
   const deviceType = useDeviceType();
   return (
     <div className=" w-[full] h-[100vh] flex flex-col justify-between relative ">
+      <Fireworks autorun={{ speed: 3, delay: 8000, duration: 5000 }} />;
       <motion.div
         initial={{ y: 100, opacity: 0 }} // 初始状态
         whileInView={{ y: 0, opacity: 1 }} // 在视口内时的状态

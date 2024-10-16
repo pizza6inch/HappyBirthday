@@ -12,6 +12,9 @@ import photo1 from "/public/photos/photo1.jpg";
 import photo2 from "/public/photos/photo2.jpg";
 import photo3 from "/public/photos/photo3.jpg";
 import photo4 from "/public/photos/photo4.jpg";
+import main from "/public/photos/photo5.jpg";
+
+const photos = [photo1, photo2, photo3, photo4];
 
 const Photo = ({ src, delay = 0 }: { src: string; delay?: number }) => {
   return (
@@ -36,7 +39,7 @@ const Photo = ({ src, delay = 0 }: { src: string; delay?: number }) => {
 const Gallery = () => {
   const device = useDeviceType();
   return (
-    <div className=" pt-4 px-8 flex flex-col items-center relative">
+    <section id="gallery" className=" pt-4 px-8 flex flex-col items-center relative">
       {/* 裝飾元素 */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
         <div className="absolute top-1/2 left-1/3 w-32 h-32 bg-gray-400 opacity-10 rounded-full" />
@@ -56,10 +59,9 @@ const Gallery = () => {
       </motion.h2>
       {device === "desktop" && (
         <div className=" grid grid-cols-2 my-16 gap-40 ">
-          <Photo src={photo3} />
-          <Photo src={photo1} delay={0.5} />
-          <Photo src={photo2} />
-          <Photo src={photo4} delay={0.5} />
+          {photos.map((photo, index) => (
+            <Photo src={photo} delay={index % 2 === 0 ? 0.5 : 0} />
+          ))}
         </div>
       )}
       {device === "mobile" && (
@@ -79,22 +81,15 @@ const Gallery = () => {
             onSwiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log("slide change")}
           >
-            <SwiperSlide>
-              <img src={photo3} alt="photo1" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={photo1} alt="photo2" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={photo2} alt="photo3" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={photo4} alt="photo4" />
-            </SwiperSlide>
+            {photos.map((photo, index) => (
+              <SwiperSlide>
+                <img src={photo} alt={`photo${index}`} />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

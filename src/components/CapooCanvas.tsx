@@ -32,7 +32,7 @@ const CapooCanvas = ({ speed = 1 }: { speed: number }) => {
       gl={{ preserveDrawingBuffer: true }}
     >
       <Suspense fallback={<CanvasLoader />}>
-        <OrbitControls autoRotate autoRotateSpeed={speed} enableZoom={false} />
+        <OrbitControls autoRotate autoRotateSpeed={speed * 1.5} enableZoom={false} />
         <Capoo isMobile={deviceType === "mobile"} />
       </Suspense>
 

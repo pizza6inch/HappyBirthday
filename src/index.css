@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  scroll-behavior: smooth;
+}
+
 @font-face {
   font-family: "KTEGAKI";
   src: url("../public/fonts/KTEGAKI.ttf");
