@@ -4,7 +4,7 @@ import Main from "./components/Main";
 import CapooArea from "./components/CapooArea";
 import { useState, useEffect } from "react";
 function App() {
-  const [showOther, setShowOther] = useState(true);
+  const [showOther, setShowOther] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
