@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import useDeviceType from "../hooks/useDeviceType";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,11 +13,22 @@ import photo1 from "/public/photos/photo1.jpg";
 import photo2 from "/public/photos/photo2.jpg";
 import photo3 from "/public/photos/photo3.jpg";
 import photo4 from "/public/photos/photo4.jpg";
-import main from "/public/photos/photo5.jpg";
+import photo5 from "/public/photos/photo5.jpg";
+import photo6 from "/public/photos/photo6.jpg";
 
-const photos = [photo1, photo2, photo3, photo4];
+const photos = [photo1, photo2, photo3, photo4, photo5, photo6];
 
-const Photo = ({ src, delay = 0 }: { src: string; delay?: number }) => {
+const Photo = ({
+  src,
+  delay = 0,
+  handleHovered,
+  handleUnhovered,
+}: {
+  src: string;
+  delay?: number;
+  handleHovered: () => void;
+  handleUnhovered: () => void;
+}) => {
   return (
     <Tilt>
       <motion.img
@@ -29,8 +41,10 @@ const Photo = ({ src, delay = 0 }: { src: string; delay?: number }) => {
           transition: { duration: 0.5 }, // whileHover 没有延迟
           cursor: "pointer",
         }}
+        onHoverStart={handleHovered}
+        onHoverEnd={handleUnhovered}
         src={src}
-        className=" w-[300px] rounded-lg"
+        className=" w-[500px] rounded-lg"
       />
     </Tilt>
   );
@@ -38,6 +52,15 @@ const Photo = ({ src, delay = 0 }: { src: string; delay?: number }) => {
 
 const Gallery = () => {
   const device = useDeviceType();
+  const [showRoast, setShowRoast] = useState(false);
+
+  const handleHovered = () => {
+    setShowRoast(true);
+  };
+  const handleUnhovered = () => {
+    setShowRoast(false);
+  };
+
   return (
     <section id="gallery" className=" pt-4 px-8 flex flex-col items-center relative">
       {/* 裝飾元素 */}
@@ -58,11 +81,27 @@ const Gallery = () => {
         Memories
       </motion.h2>
       {device === "desktop" && (
-        <div className=" grid grid-cols-2 my-16 gap-40 ">
-          {photos.map((photo, index) => (
-            <Photo src={photo} delay={index % 2 === 0 ? 0.5 : 0} />
-          ))}
-        </div>
+        <>
+          <div className=" grid grid-cols-2 my-16 gap-40 ">
+            {photos.map((photo, index) => (
+              <Photo
+                key={index}
+                src={photo}
+                delay={index % 2 === 0 ? 0.5 : 0}
+                handleHovered={handleHovered}
+                handleUnhovered={handleUnhovered}
+              />
+            ))}
+          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: showRoast ? 1 : 0 }}
+            transition={{ duration: 0.5 }} // For smoother animation
+            className="absolute bottom-[400px] right-[500px] text-2xl text-[#103362] font-enFont font-bold"
+          >
+            {"頭髮也想當主角 X)"}
+          </motion.div>
+        </>
       )}
       {device === "mobile" && (
         <div className=" relative w-full">
@@ -82,7 +121,7 @@ const Gallery = () => {
             onSlideChange={() => console.log("slide change")}
           >
             {photos.map((photo, index) => (
-              <SwiperSlide>
+              <SwiperSlide key={index}>
                 <img src={photo} alt={`photo${index}`} />
               </SwiperSlide>
             ))}

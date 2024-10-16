@@ -47,18 +47,27 @@ const Hero = () => {
   return (
     <div className=" w-[full] h-[100vh] flex flex-col justify-between relative ">
       <Fireworks autorun={{ speed: 3, delay: 8000, duration: 5000 }} />;
-      <motion.div
+      <motion.img
         initial={{ y: 100, opacity: 0 }} // 初始状态
         whileInView={{ y: 0, opacity: 1 }} // 在视口内时的状态
         viewport={{ once: true }} // 只在第一次进入视口时触发
         transition={{ duration: 2 }}
-      >
-        <img src={ribbon1} alt="ribbon" className="absolute flex left-0 top-0 w-1/3" />
-        <img src={ribbon2} alt="ribbon" className="absolute flex right-0 top-0 w-1/3 " />
-      </motion.div>
+        src={ribbon1}
+        alt="ribbon"
+        className="absolute flex left-0 top-0 w-1/3"
+      />
+      <motion.img
+        initial={{ y: 100, opacity: 0 }} // 初始状态
+        whileInView={{ y: 0, opacity: 1 }} // 在视口内时的状态
+        viewport={{ once: true }} // 只在第一次进入视口时触发
+        transition={{ duration: 2 }}
+        src={ribbon2}
+        alt="ribbon"
+        className="absolute flex right-0 top-0 w-1/3 "
+      />
       <div className=" w-full h-full pt-12 flex flex-col items-center">
         {/* <h2 className=" text-gray-800 font-semibold text-[28px]">嘿！</h2> */}
-        <h1 className="text-black font-bold text-[40px]">To 姵涵姊姊</h1>
+        <h1 className="text-black font-bold text-[40px]">To 姵涵</h1>
         <p className="text-[#103362] font-enFont mt-10 mx-4">
           {"Happy Birthday！".split("").map((letter, index) => (
             <motion.span

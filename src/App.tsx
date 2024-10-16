@@ -1,5 +1,6 @@
 import Hero from "./components/Hero";
 import Gallery from "./components/Gallery";
+import Main from "./components/Main";
 import CapooArea from "./components/CapooArea";
 import { useState, useEffect } from "react";
 import { use } from "framer-motion/client";
@@ -22,6 +23,7 @@ function App() {
       {showOther && (
         <>
           <Gallery />
+          <Main />
           <CapooArea />
         </>
       )}
