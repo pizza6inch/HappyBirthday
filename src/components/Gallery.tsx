@@ -2,11 +2,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import useDeviceType from "../hooks/useDeviceType";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-// import { Autoplay } from "swiper";
-import { Pagination } from "swiper/modules";
-
-import "swiper/swiper-bundle.css"; // 适用于 Swiper v9 和更高版本
 import { Tilt } from "react-tilt";
 
 import photo1 from "/public/photos/photo1.jpg";
