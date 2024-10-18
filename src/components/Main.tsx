@@ -10,7 +10,7 @@ import hat5 from "/public/hats/hat5.png";
 import hat6 from "/public/hats/hat6.png";
 import hat7 from "/public/hats/hat7.png";
 
-import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
+import useDeviceType from "../hooks/UseDeviceType";
 
 type HatType = {
   src: string;
@@ -19,13 +19,24 @@ type HatType = {
 };
 
 const Hat = ({ hat }: { hat: HatType }) => {
+  const device: "mobile" | "desktop" = useDeviceType();
   return (
     hat?.src && (
       <div className=" absolute top-0 -translate-x-1/2 left-[50%] transform lg:w-1/5">
         <motion.img
           key={hat.src}
-          initial={{ opacity: 0, y: -100 + hat.offset.y, x: hat.offset.x, rotate: hat.rotate }}
-          animate={{ opacity: 1, y: hat.offset.y, x: hat.offset.x, rotate: hat.rotate }}
+          initial={{
+            opacity: 0,
+            y: -100 + hat.offset.y,
+            x: hat.offset.x,
+            rotate: hat.rotate,
+          }}
+          animate={{
+            opacity: 1,
+            y: hat.offset.y + (device === "mobile" ? 0 : -20),
+            x: hat.offset.x,
+            rotate: hat.rotate,
+          }}
           src={hat.src}
         />
       </div>
@@ -69,8 +80,10 @@ const Main = () => {
       <div className="flex items-center gap-5">
         <div className="relative w-2/3 lg:w-[70%]">
           <Hat hat={hat} />
-          <motion.img src={main} className=" lg:w-1/4 mx-auto mt-[80px] lg:mt-[145px] rounded-xl" />
-          <Fireworks />
+          <motion.img
+            src={main}
+            className=" lg:w-1/4 mx-auto mt-[80px] lg:mt-[145px] rounded-xl"
+          />
         </div>
         <div className="w-1/3 lg:w-[450px] grid grid-cols-1 lg:grid-cols-3 relative lg:right-[200px]">
           {HATS.map((hat, index) => (

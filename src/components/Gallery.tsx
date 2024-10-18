@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import useDeviceType from "../hooks/useDeviceType";
+import useDeviceType from "../hooks/UseDeviceType";
 
 import { Tilt } from "react-tilt";
 
@@ -65,7 +65,10 @@ const Gallery = () => {
   };
 
   return (
-    <section id="gallery" className=" pt-4 px-8 flex flex-col items-center relative">
+    <section
+      id="gallery"
+      className=" pt-4 px-8 flex flex-col items-center relative"
+    >
       {/* 裝飾元素 */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
         <div className="absolute top-1/2 left-1/3 w-32 h-32 bg-gray-400 opacity-10 rounded-full" />

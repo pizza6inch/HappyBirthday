@@ -5,7 +5,7 @@ import firecracker2 from "../assets/firecracker2.svg";
 import cake from "../assets/cake.svg";
 import { motion } from "framer-motion";
 
-import useDeviceType from "../hooks/useDeviceType";
+import useDeviceType from "../hooks/UseDeviceType";
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 
 type content = { text: string; color: string }[];
@@ -103,23 +103,26 @@ const Decoration = () => {
         alt="firecracker"
         className=" absolute right-0 bottom-0 w-1/6"
       />
-      <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 w-1/6">
-        <motion.img
-          initial={{ scale: 0.01, opacity: 0, y: -10 }} // 初始状态
-          whileInView={deviceType === "mobile" ? { scale: 3, opacity: 1, y: -300 } : { scale: 2, opacity: 1, y: -80 }} // 在视口内时的状态
-          viewport={{ once: true }} // 只在第一次进入视口时触发
-          transition={{
-            type: "spring", // 使用 spring 动画类型
-            stiffness: 100, // 弹簧的刚度
-            damping: 5, // 阻尼
-            duration: 2, // 动画持续时间
-            delay: 6,
-          }}
-          src={cake}
-          alt="cake"
-          className=" "
-        />
-      </div>
+
+      <motion.img
+        initial={{ scale: 0.01, opacity: 0, y: -10, x: 0 }} // 初始状态
+        whileInView={
+          deviceType === "mobile"
+            ? { scale: 3, opacity: 1, y: -300 }
+            : { scale: 2, opacity: 1, y: -80 }
+        } // 在视口内时的状态
+        viewport={{ once: true }} // 只在第一次进入视口时触发
+        transition={{
+          type: "spring", // 使用 spring 动画类型
+          stiffness: 100, // 弹簧的刚度
+          damping: 5, // 阻尼
+          duration: 2, // 动画持续时间
+          delay: 6,
+        }}
+        src={cake}
+        alt="cake"
+        className="absolute mx-auto bottom-0 w-1/6"
+      />
     </>
   );
 };
