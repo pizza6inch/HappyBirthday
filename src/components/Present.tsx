@@ -11,7 +11,7 @@ const Present = () => {
   const device = useDeviceType();
   return (
     <>
-      <Fireworks autorun={{ speed: 3, duration: 5000 }}  />
+      <Fireworks autorun={{ speed: 3, duration: 5000 }} />
       <motion.h2
         className="text-[#103362] font-bold text-[40px] text-center font-enFont"
         initial={{ opacity: 0, y: 40 }}
