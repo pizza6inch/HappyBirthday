@@ -7,7 +7,7 @@ import Present from "./components/Present";
 
 import { AppContext } from "./hooks/UseConetext";
 function App() {
-  const [showOther, setShowOther] = useState(true);
+  const [showOther, setShowOther] = useState(false);
   const [showPresent, setShowPresent] = useState(false);
 
   useEffect(() => {
