@@ -48,7 +48,6 @@ const Dialog = ({ message }: { message: string }) => {
 const CapooArea = () => {
   const [cuteness, setCuteness] = useState(0);
   const [speed, setSpeed] = useState(1);
-  const [isMagic, setIsMagic] = useState(false);
   const [message, setMessage] = useState("集到100有驚喜喔😉");
 
   const { setShowPresent } = useContext(AppContext);
@@ -80,7 +79,7 @@ const CapooArea = () => {
       <div className=" flex w-full h-[400px]  flex-col lg:flex-row">
         <div className="w-full lg:w-1/2 hover:cursor-grab active:cursor-grabbing relative">
           <Dialog message={message} />
-          <CapooCanvas speed={speed} isMagic={isMagic} />
+          <CapooCanvas speed={speed} />
         </div>
         <div className="w-full lg:w-1/2 flex flex-col items-center gap-4">
           {deviceType === "desktop" && (

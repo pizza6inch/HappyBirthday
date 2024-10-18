@@ -15,18 +15,18 @@ const Capoo = () => {
   );
 };
 
-const MagicCapoo = () => {
-  const MagicCapoo = useGLTF("./magicCapoo/scene.gltf");
+// const MagicCapoo = () => {
+//   const MagicCapoo = useGLTF("./magicCapoo/scene.gltf");
 
-  return (
-    <mesh>
-      <hemisphereLight intensity={2} groundColor="blue" />
-      <primitive object={MagicCapoo.scene} scale={4} position={[0, -2, 0]} />
-    </mesh>
-  );
-};
+//   return (
+//     <mesh>
+//       <hemisphereLight intensity={2} groundColor="blue" />
+//       <primitive object={MagicCapoo.scene} scale={4} position={[0, -2, 0]} />
+//     </mesh>
+//   );
+// };
 
-const CapooCanvas = ({ speed = 1, isMagic }: { speed: number; isMagic: boolean }) => {
+const CapooCanvas = ({ speed = 1 }: { speed: number }) => {
   return (
     <Canvas
       frameloop="demand"
@@ -36,8 +36,12 @@ const CapooCanvas = ({ speed = 1, isMagic }: { speed: number; isMagic: boolean }
       gl={{ preserveDrawingBuffer: true }}
     >
       <Suspense fallback={<CanvasLoader />}>
-        <OrbitControls autoRotate autoRotateSpeed={isMagic ? 10 : speed * 1.5} enableZoom={false} />
-        {isMagic ? <MagicCapoo /> : <Capoo />}
+        <OrbitControls
+          autoRotate
+          autoRotateSpeed={speed * 1.5}
+          enableZoom={false}
+        />
+        <Capoo />
       </Suspense>
 
       <Preload all />
