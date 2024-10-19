@@ -57,14 +57,20 @@ const Present = () => {
             alt="present"
           />
         </div>
-        <div className="w-full lg:w-1/2 flex flex-col justify-center items-center mb-16 ">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 4 }}
+          viewport={{ once: true }} // 只在第一次进入视口时触发
+          className="w-full lg:w-1/2 flex flex-col justify-center items-center mb-16 "
+        >
           <QRCodeSVG
             value={presentQRCode}
             size={device === "mobile" ? 128 : 400}
           />
           <p className=" mt-4 font-semibold">{presentQRCode}</p>
           <p className=" mt-4 font-semibold">兌換截止日2024/12/06</p>
-        </div>
+        </motion.div>
       </div>
     </>
   );
