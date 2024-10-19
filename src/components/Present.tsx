@@ -29,7 +29,7 @@ const Present = () => {
             viewport={{ once: true }} // 只在第一次进入视口时触发
             className="text-[#103362] text-center text-[20px] mt-4 font-bold lg:text-[40px]"
           >
-            【星巴克】感謝你組合
+            【星巴克】感謝你組合(電子票券)
           </motion.p>
           <motion.p
             initial={{ opacity: 0, x: -40 }}
@@ -52,17 +52,18 @@ const Present = () => {
               delay: 3,
             }}
             viewport={{ once: true }} // 只在第一次进入视口时触发
-            className="mt-4 lg:-mt-16 "
+            className="mt-4 lg:-mt-16 rounded-lg"
             src={present}
             alt="present"
           />
         </div>
-        <div className="w-full lg:w-1/2 flex flex-col justify-center items-center mb-16">
+        <div className="w-full lg:w-1/2 flex flex-col justify-center items-center mb-16 ">
           <QRCodeSVG
             value={presentQRCode}
             size={device === "mobile" ? 128 : 400}
           />
-          <p className=" mt-4">{presentQRCode}</p>
+          <p className=" mt-4 font-semibold">{presentQRCode}</p>
+          <p className=" mt-4 font-semibold">兌換截止日2024/12/06</p>
         </div>
       </div>
     </>
